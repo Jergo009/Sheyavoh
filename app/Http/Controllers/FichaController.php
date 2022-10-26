@@ -16,13 +16,13 @@ class FichaController extends Controller
      */
     public function index()
     {
-        $datos = DB::table('asignacion_cursos')
-        ->join('cursos', 'asignacion_cursos.id_curso', '=', 'cursos.id') 
-        ->select('cursos.id', 'cursos.nombre_apellido')
-        ->where('asignacion_cursos.id_persona', auth()->user()->id)
-        ->get();  
-        $datos_grado_seccion =  GradoSeccion::all(); 
-        return view('ficha.inicial',compact('datos','datos_grado_seccion')); 
+        $datos = DB::table('asignacion_pacientes')
+        ->join('pacientes', 'asignacion_pacientes.id_paciente', '=', 'pacientes.id') 
+        ->select('pacientes.*')
+        ->where('asignacion_pacientes.id_persona', auth()->user()->id)
+        ->get();   
+
+        return view('ficha.inicial',compact('datos')); 
     }
 
     public function f_listado_alumnos(Request $request)

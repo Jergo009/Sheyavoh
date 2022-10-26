@@ -14,12 +14,12 @@
 
 
         <div class="section-title">
-          <h2>Listado de usuarios</h2>
+          <h2>Listado de pacientes</h2>
         </div>
 
            
         <div class="d-flex justify-content-end">
-        <a href="{{url('usuarios/crear')}}" class="btn btn-success">+ Nuevo Usuario</a>
+        <a href="{{url('pacientes/crear')}}" class="btn btn-success">+ Nuevo Paciente</a>
         </div>
 
         <div class="card border-light mb-3" ><!-- card, table --> 
@@ -30,46 +30,53 @@
                                   <thead>
                                       <tr>
                                       <!-- <th>Id</th> -->
-                                      <th>Nombre</th>
-                                      <th>Email</th>
-                                      <th>Tipo</th> 
+                                      <th>Nombre y Apellido</th> 
+                                      <th>DPI</th> 
+                                      <th>Tipo Servicio</th> 
+                                      <th>Motivo Consulta</th> 
                                       <th>Acciones</th>
                                       </tr>
                                   </thead>
                                   <tfoot>
                                       <tr>
                                       <!-- <th>Id</th> -->
-                                      <th>Nombre</th>
-                                      <th>Email</th>
-                                      <th>Tipo</th> 
+                                      <th>Nombre y Apellido</th> 
+                                      <th>DPI</th> 
+                                      <th>Tipo Servicio</th> 
+                                      <th>Motivo Consulta</th> 
                                       <th>Acciones</th>
                                       </tr>
                                   </tfoot>
                                   <tbody> 
                                   @foreach ($datos as $item)
-                                  <tr>
-                                      @if(Auth::user()->id != $item->id )
+                                  <tr> 
                                       <!-- <td>{{$item->id}}</td> -->
-                                      <td>{{$item->name}}</td>
-                                      <td>{{$item->email}}</td>
-                                      <td>{{$item->type}}</td> 
+                                      <td>{{$item->nombre_apellido}}</td> 
+                                      <td>{{$item->dpi}}</td> 
+                                      <td>{{$item->tipo_servicio}}</td> 
+                                      <td>{{$item->motivo_consulta}}</td> 
                                       <td  style="text-align: center;">
-                                        <!-- <a class="btn btn-warning btn-sm" href="{{url('contracts/'.$item->id.'/edit')}}" role="button">Editar</a> -->
+                                        <a class="btn btn-warning btn-sm" href="{{url('/pacientes/editar/'.$item->id.'/editar')}}" role="button">Editar</a>
+                                        <!-- <form action="{{url('/pacientes/eliminar/'.$item->id)}}" method="POST">
+                                        {{csrf_field()}}
+                                        {{method_field('DELETE')}}
+                                        <button type="submit" name="button"class="btn btn-danger btn-sm"  onclick="return confirm('¿Eliminar?')">Eliminar</button>
+                                        </form>  -->
+
                                         @if($item->enable == 'si' )
-                                        <form action="{{url('/usuarios/estado/'.$item->id.'/no')}}" method="POST">
+                                        <form action="{{url('/pacientes/estado/'.$item->id.'/no')}}" method="POST">
                                         {{csrf_field()}}
                                         {{method_field('PUT')}}
                                         <button type="submit" name="button"class="btn btn-danger btn-sm"  onclick="return confirm('¿Cambiar estado?')">Deshabilitar</button>
                                         </form>
                                         @else
-                                        <form action="{{url('/usuarios/estado/'.$item->id.'/si')}}" method="POST">
+                                        <form action="{{url('/pacientes/estado/'.$item->id.'/si')}}" method="POST">
                                         {{csrf_field()}}
                                         {{method_field('PUT')}}
                                         <button type="submit" name="button"class="btn btn-success btn-sm"  onclick="return confirm('¿Cambiar estado?')">Habilitar</button>
                                         </form>
                                         @endif
-                                        
-                                        @endif
+
                                     </td>
                                   </tr>
                                   @endforeach    

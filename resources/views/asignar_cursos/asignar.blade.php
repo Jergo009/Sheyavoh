@@ -6,9 +6,6 @@
 <section id="contact" class="contact">
       <div class="container">
 
-            
-
-
         <div class="section-title">
           <h2>Listado de pacientes - {{$datosUsuario->name}}</h2>
         </div> 
@@ -51,9 +48,9 @@
                                       <td>{{$item->tipo_servicio}}</td> 
                                       <td>{{$item->motivo_consulta}}</td>  
                                       <td  style="text-align: center;">
-                                      <input type="checkbox" id="curso[]" name="curso[]" value="{{$item->id}}" 
+                                      <input type="checkbox" id="paciente[]" name="paciente[]" value="{{$item->id}}" 
                                       @foreach ($datosUsuarioAsignados as $item2)
-                                        @if($item2->id_curso == $item->id)
+                                        @if($item2->id_paciente == $item->id)
                                         checked
                                          @endif
                                       @endforeach

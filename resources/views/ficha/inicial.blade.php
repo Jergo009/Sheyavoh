@@ -14,46 +14,53 @@
           <h2>Listado de pacientes asignados</h2>
         </div>
 
-        <div class="row" data-aos="fade-in">
- 
-          <div class="col-lg-12 mt-12  ">
-          
-            <form method="GET" action="{{url('/fichas/calificar')}}"   >
-                        @csrf
+        <div class="card border-light mb-3" ><!-- card, table --> 
+        <div class="card-body">
+           
+                  <div class="table-responsive">
+                      <table id="dataTables" class="table table-striped table-bordered" style="width:100%">
+                                  <thead>
+                                      <tr>
+                                      <!-- <th>Id</th> -->
+                                      <th>Nombre y Apellido</th> 
+                                      <th>DPI/CUI</th> 
+                                      <!-- <th>Tipo Servicio</th>  -->
+                                      <th>Motivo Consulta</th> 
+                                      <th>Referido por</th> 
+                                      <th>Acciones</th>
+                                      </tr>
+                                  </thead>
+                                  <tfoot>
+                                      <tr>
+                                      <!-- <th>Id</th> -->
+                                      <th>Nombre y Apellido</th> 
+                                      <th>DPI/CUI</th> 
+                                      <!-- <th>Tipo Servicio</th>  -->
+                                      <th>Motivo Consulta</th> 
+                                      <th>Referido por</th> 
+                                      <th>Acciones</th>
+                                      </tr>
+                                  </tfoot>
+                                  <tbody> 
+                                  @foreach ($datos as $item)
+                                  <tr> 
+                                      <!-- <td>{{$item->id}}</td> -->
+                                      <td>{{$item->nombre_apellido}}</td> 
+                                      <td>{{$item->dpi}}</td> 
+                                      <!-- <td>{{$item->tipo_servicio}}</td>  -->
+                                      <td>{{$item->motivo_consulta}}</td> 
+                                      <td>{{$item->referido_por}}</td> 
+                                      <td  style="text-align: center;">
+                                        <a class="btn btn-warning btn-sm" href="{{url('/pacientes/editar/'.$item->id.'/editar')}}" role="button">Tratamiento</a>
+                                   </td>
+                                  </tr>
+                                  @endforeach    
+                                  </tbody>
+                        </table>
+                  </div>
+            </div> 
+        </div> <!-- card, table -->
 
-                        <div class="form-group row">  
-                            <div class="col-md-6"> 
-                            <label for="name" class=" col-form-label text-md-right">{{ __('Paciente') }}</label>
-                                <select name="id_curso" id="id_curso"  class="form-control">
-                                    @foreach ($datos as $item)   
-                                    <option value="{{ $item->id}}">{{ $item->nombre_apellido }}</option> 
-                                    @endforeach
-                                </select>
-                            
-                            </div> 
-                            <div class="col-md-6"> 
-                            <label for="name" class=" col-form-label text-md-right">{{ __('Tipo servicio') }}</label>
-                                <select name="id_grado_seccion" id="id_grado_seccion"  class="form-control">
-                                    @foreach ($datos_grado_seccion as $item)   
-                                    <option value="{{ $item->id}}">{{ $item->grado_carrera_seccion }}</option> 
-                                    @endforeach
-                                </select>
-                            
-                            </div>                                
-                        </div>
- 
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Calificar') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-          </div>
-
-        </div>
 
       </div>
     </section><!-- End Contact Section -->

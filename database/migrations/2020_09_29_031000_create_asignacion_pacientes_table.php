@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFichasTable extends Migration
+class CreateAsignacionPacientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateFichasTable extends Migration
      */
     public function up()
     {
-        Schema::create('fichas', function (Blueprint $table) {
+        Schema::create('asignacion_pacientes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTime('fecha'); 
-            $table->foreignId('id_alumno')->constrained('alumnos');
-            $table->foreignId('id_falta')->constrained('faltas');
-            $table->foreignId('id_curso')->constrained('pacientes');
+            $table->foreignId('id_persona')->constrained('users');
+            $table->foreignId('id_paciente')->constrained('pacientes');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateFichasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fichas');
+        Schema::dropIfExists('asignacion_pacientes');
     }
 }

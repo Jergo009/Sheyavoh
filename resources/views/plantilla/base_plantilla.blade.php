@@ -102,7 +102,7 @@
           
           @elseif(Auth::user()->type =="Voluntarios" )
           <li>
-                    <a href="{{ url('/fichas') }}"><i class="bx bx-list-ol"></i>Seguimiento de pacientes</a>
+                    <a href="{{ url('/seguimiento_pacientes') }}"><i class="bx bx-list-ol"></i>Listado de pacientes</a>
           </li>
           @endif
           

@@ -13,7 +13,8 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        
+         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
@@ -21,6 +22,17 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('type')->nullable();
+            $table->string('enable')->default('si');
+            $table->string('dpi')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('profesion_oficio')->nullable();
+            $table->string('labora')->nullable();
+            $table->string('nombre_lugar_labora')->nullable();
+            $table->string('estudia')->nullable();
+            $table->string('grado')->nullable();
+            $table->string('nombre_establecimiento')->nullable();
+
             $table->timestamps();
         });
     }
